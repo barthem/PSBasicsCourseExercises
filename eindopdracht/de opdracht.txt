@@ -1,0 +1,12 @@
+We gaan een powershell programma maken dat de volgende dingen doet:
+
+1. Het biedt de optie om een volledig overzicht te zien  van alle users in de OGD Azure AD. 
+    a. Hierbij moeten guest users gefilterd zijn.
+    b. Weergeef hier alleen relevante informatie  (minstens, displayname, email, of het account actief is, en hun jobtitle)
+2. laat een overzicht zien van iedereen die in een bepaalde afdeling(department) werkt, of een bepaalde job titel heeft. (kies zelf een van de 2)
+    a. Weergeef hier alleen relevante informatie  (minstens, displayname, email, of het account actief is, en hun jobtitle)
+    b. weergeef de informatie op een overzichtelijke manier in de command prompt
+    c. Zorg ervoor dat de output ook als HTML geexporteerd wordt
+
+Je kan er 2 losse scripts van maken, maar is gaver als je het in 1 overzichtelijk scriptje weet te draaien!
+Bonusopdracht : laat een overzicht van iedereen die onder een bepaalde manager vallen
