@@ -437,10 +437,6 @@ while ($true) {
         write-host "`n"
         write-host "score: $score"
     }
-    #beeindig de game als je 10 gehaald hebt
-    if($score -ge 10){
-        write-host "je hebt er 10 goed, je hebt de opdracht goed afgesloten!"
-        exit
-    }
+
 }
 
