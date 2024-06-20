@@ -17,6 +17,23 @@ function get-numbersAddedUp {
 
 get-numbersAddedUp -eersteGetal 55 -tweedeGetal 66
 
+function get-dayoftheweek{
+    $dayoftheweek = get-date |select-object -ExpandProperty dayofweek
+
+    return $dayoftheweek 
+
+    #deze code wordt nooit uitgevoerd omdat return ervoor aangeroepen wordt.
+    write-output "Old MacDonald had a farm, E-I-E-I-O!
+    And on his farm he had a cow, E-I-E-I-O!
+    With a moo-moo here and a moo-moo there,
+    Here a moo, there a moo,
+    Everywhere a moo-moo,
+    Old MacDonald had a farm, E-I-E-I-O!    
+    "
+}
+
+get-dayoftheweek
+
 #powershell zal een fout geven als een andere kleur opgegeven wordt dan de validate set. 
 function Get-FavoriteColor {
     param (
