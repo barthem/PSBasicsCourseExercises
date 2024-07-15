@@ -1,59 +1,61 @@
 $score = 0
+# Anti-cheat timer
+$lastAnswerTime = [System.Diagnostics.Stopwatch]::StartNew()
 while ($true) {
-    #willekeurig statement opzoeken
-    $randomNummer = get-random -Maximum 100 
-    write-host "Wat is de uitkomst van de volgende statement:"
+    # Randomly select a statement
+    $randomNummer = Get-Random -Maximum 100 
+    Write-Host "Wat is de uitkomst van de volgende statement:"
     switch ($randomNummer) {
         0 { 
-            write-host "400 - 300 -lt 150" -ForegroundColor Red
+            Write-Host "400 - 300 -lt 150" -ForegroundColor Red
             $antwoord = 400 - 300 -lt 150
         }
         1 { 
-            write-host '"kat" -ne "hond"' -ForegroundColor Red
+            Write-Host '"kat" -ne "hond"' -ForegroundColor Red
             $antwoord = "kat" -ne "hond"
         }
         2 { 
-            write-host '5 * 5 -le 25' -ForegroundColor Red
+            Write-Host '5 * 5 -le 25' -ForegroundColor Red
             $antwoord = 5 * 5 -le 25
         }
         3 { 
-            write-host '"123" -eq 123' -ForegroundColor Red
+            Write-Host '"123" -eq 123' -ForegroundColor Red
             $antwoord = "123" -eq 123
         }
         4 { 
-            write-host '"hello" -ge "hello" ' -ForegroundColor Red
+            Write-Host '"hello" -ge "hello" ' -ForegroundColor Red
             $antwoord = "hello" -ge "hello"
         }
         5 { 
-            write-host '321 -lt 123' -ForegroundColor Red
+            Write-Host '321 -lt 123' -ForegroundColor Red
             $antwoord = 321 -lt 123
         }
         6 { 
-            write-host '13 -ge 37' -ForegroundColor Red
+            Write-Host '13 -ge 37' -ForegroundColor Red
             $antwoord = 13 -ge 37
         }
         7 { 
-            write-host '213-233 -eq 0' -ForegroundColor Red
+            Write-Host '213-233 -eq 0' -ForegroundColor Red
             $antwoord = 213 - 233 -eq 0
         }
         8 { 
-            write-host '213-233 -le 0' -ForegroundColor Red
+            Write-Host '213-233 -le 0' -ForegroundColor Red
             $antwoord = 213 - 233 -le 0
         }
         9 { 
-            write-host '"ca via" -eq "cavia"'  -ForegroundColor Red
+            Write-Host '"ca via" -eq "cavia"'  -ForegroundColor Red
             $antwoord = "ca via" -eq "cavia"
         }
         10 { 
-            write-host '10*10*10 -ne 100' -ForegroundColor Red
+            Write-Host '10*10*10 -ne 100' -ForegroundColor Red
             $antwoord = 10*10*10 -ne 100
         }
         11 {
-            write-host '1 -ne $true' -ForegroundColor Red
+            Write-Host '1 -ne $true' -ForegroundColor Red
             $antwoord = 1 -ne $true
         }
         12 {
-            write-host '0 -eq $false' -ForegroundColor Red
+            Write-Host '0 -eq $false' -ForegroundColor Red
             $antwoord = 0 -eq $false
         }
         13 {
@@ -410,8 +412,16 @@ while ($true) {
         }
 
     }
-    #vragen wat je denkt dat het antwoord is
+    # Ask for your answer
     $response = Read-Host "vul 0 als je denkt dat die false is, en een 1 als je denkt dat die true is."
+    
+    # Check the time since the last answer
+    if ($lastAnswerTime.Elapsed.TotalSeconds -lt 1) {
+        Write-Host -ForegroundColor Yellow "Te snel! Probeer het opnieuw."
+        continue
+    }
+    $lastAnswerTime.Restart()  # Restart the timer for the next question
+
     if ($response -eq "0") {
         $response = $false
     }
@@ -419,24 +429,22 @@ while ($true) {
         $response = $true
     }
     else {
-        write-host -ForegroundColor black -BackgroundColor red "Dat is geen 0 of 1!"
-        write-host "`n"
+        Write-Host -ForegroundColor Black -BackgroundColor Red "Dat is geen 0 of 1!"
+        Write-Host "`n"
         continue
     }
 
-    #checken of je het goed had
-    write-host "Deze statement is: $antwoord"
+    # Check if you got it right
+    Write-Host "Deze statement is: $antwoord"
     if ($response -eq $antwoord) {
-        write-host -ForegroundColor white -BackgroundColor Green "Hoera! je had het goed :) "
-        write-host "`n"
+        Write-Host -ForegroundColor White -BackgroundColor Green "Hoera! je had het goed :) "
+        Write-Host "`n"
         $score = $score + 1
-        write-host "score: $score"
+        Write-Host "score: $score"
     }
     else {
-        write-host -ForegroundColor white -BackgroundColor red "je had het fout :("
-        write-host "`n"
-        write-host "score: $score"
+        Write-Host -ForegroundColor White -BackgroundColor Red "je had het fout :("
+        Write-Host "`n"
+        Write-Host "score: $score"
     }
-
 }
-
